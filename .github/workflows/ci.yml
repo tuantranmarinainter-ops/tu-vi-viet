@@ -22,6 +22,9 @@ jobs:
       - name: 安装依赖
         run: npm ci --no-audit --no-fund
 
+      - name: Check development environment
+        run: npm run doctor
+
       - name: 类型检查
         run: npm run typecheck
 

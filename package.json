@@ -2,15 +2,25 @@
   "name": "ziwei-master",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=22.15.0 <23 || >=24.0.0"
+  },
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "dev": "node scripts/dev/run.mjs dev",
+    "build": "node scripts/dev/run.mjs build",
+    "start": "node scripts/dev/run.mjs start",
     "typecheck": "tsc --noEmit",
-    "test": "tsx scripts/regression/pan-integrity.test.ts && tsx scripts/regression/dst-cn.test.ts && tsx scripts/regression/clock-adjust.test.ts && tsx scripts/regression/sizhu-lichun-boundary.test.ts && tsx scripts/regression/hongluan-tianxi.test.ts && tsx scripts/regression/famous-hour-consistency.test.ts && tsx scripts/regression/iztro-time-index-boundary.test.ts && tsx scripts/regression/solar-date-exists.test.ts && tsx scripts/regression/gender-validation.test.ts && tsx scripts/regression/natal-dual-sihua-same-palace.test.ts && tsx scripts/regression/neutral-naming.test.ts && tsx scripts/regression/leap-policy-validation.test.ts && tsx scripts/regression/form-true-solar-day.test.ts && tsx scripts/regression/birthform-birthinfo-consistency.test.ts && tsx scripts/regression/heming-refresh.test.ts && tsx scripts/regression/heming-stream.test.ts && tsx scripts/regression/patterns-sihua-bonus.test.ts"
+    "doctor": "node scripts/dev/run.mjs doctor",
+    "inventory:ui": "node scripts/dev/inventory-ui.mjs",
+    "test:vietnam-time": "node scripts/dev/run.mjs test-vietnam",
+    "test": "node scripts/dev/run.mjs test",
+    "test:vietnam-calendar": "node scripts/dev/run.mjs test-calendar",
+    "test:v4": "node scripts/dev/run.mjs test-v4",
+    "test:readings": "node scripts/dev/run.mjs test-readings"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.27.0",
+    "@nghiavuive/lunar_date_vi": "2.0.1",
     "@types/pg": "^8.20.0",
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",

@@ -1,3 +1,5 @@
+> **Tử Vi Việt v0.1** — Bản Việt hóa phát triển từ Renhuai123/ziwei-doushu. Xem [hướng dẫn tiếng Việt](README.vi.md) và [ghi chú phát hành](docs/releases/v0.1.md). Nội dung và thông tin nguồn của repo gốc được giữ bên dưới.
+
 <div align="center">
 
 # 紫微斗数 · 开源排盘引擎

@@ -42,7 +42,6 @@ for (const [h, mi, lon, expected, label] of cases) {
   assert.deepEqual(pick(formToBirthInfo(formAt(h, mi, lon))), expected, label);
 }
 
-const unknown = formToBirthInfo({ ...formAt('23', '30', 100), unknownTime: true });
-assert.deepEqual(pick(unknown), { year: 2000, month: 1, day: 31, hour: 0 }, '时辰不详不换日');
+assert.throws(() => formToBirthInfo({ ...formAt('23', '30', 100), unknownTime: true }), /Chưa biết giờ sinh/);
 
 console.log('form true-solar day rollover regression passed');

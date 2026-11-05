@@ -10,6 +10,9 @@ import { BRANCHES, STEMS } from './constants';
 import { schoolStarBrightness, type BrightnessSchool } from './school-data';
 import { SCHOOL_AX } from './school-tables.generated';
 import { DEFAULT_LEAP_MONTH } from './school-config';
+import { solarToCalendar, engineLunarDate } from './vietnam-calendar';
+import { VIETNAM_PROFILE_VERSION, UPSTREAM_PROFILE_VERSION } from './profiles';
+import { generateChart as generateV4Reference } from './v4-reference/algorithm';
 // 飞星派工具仅供导出，不再在排盘时调用（倪师《天纪 03》：四化星永远固定不动）
 // import { detectSelfSihua, getSiHuaByStem } from './sihua';
 
@@ -455,6 +458,8 @@ export function generateChart(
   opts?: { leapMonth?: LunarMonthPolicy },
 ): ZiweiChart {
   const { year, month, day, hour, gender } = birthInfo;
+  if (birthInfo.calendarSystem && !['vietnam', 'chinese'].includes(birthInfo.calendarSystem)) throw new RangeError('Hệ lịch không hợp lệ.');
+  if (birthInfo.engineVersion && !['current', 'v4'].includes(birthInfo.engineVersion)) throw new RangeError('Phiên bản engine không hợp lệ.');
   if (!Number.isInteger(hour) || hour < 0 || hour > 11) {
     throw new RangeError(`hour must be an integer branch index from 0 to 11; received ${hour}`);
   }
@@ -472,18 +477,36 @@ export function generateChart(
   ) {
     throw new RangeError(`solar date does not exist: ${year}-${month}-${day}`);
   }
+  if (birthInfo.engineVersion === 'v4') {
+    if (birthInfo.calendarSystem === 'vietnam') throw new RangeError('Engine v4 chỉ dùng hệ lịch gốc Trung Quốc.');
+    const reference = generateV4Reference(birthInfo, { leapMonth: opts?.leapMonth ?? birthInfo.leapMonthPolicy ?? DEFAULT_LEAP_MONTH });
+    return { ...reference, birthInfo: { ...birthInfo, profileVersion: 'v4.0-13d', engineVersion: 'v4' } } as ZiweiChart;
+  }
   const iztroGender = gender === 'male' ? '男' : '女';
 
   // 闰月处理（流派分歧：归本月 / 归下月 / 前后半分）
   // 默认 = DEFAULT_LEAP_MONTH（2026-09-05 起 split：主流排盘默认口径「月中分界」，150 组金标准盘对照验证；倪师派归下月可经流派抽屉切 next-month）
   // 非 split 时先算农历，闰月才切 byLunar；非闰月仍走 bySolar，与 split 行为完全一致
-  const leapMode = opts?.leapMonth ?? DEFAULT_LEAP_MONTH;
-  const effectiveLunar = resolveEffectiveLunarDate(year, month, day, leapMode);
+  const leapMode = opts?.leapMonth ?? birthInfo.leapMonthPolicy ?? DEFAULT_LEAP_MONTH;
+  const isVietnam = birthInfo.calendarSystem === 'vietnam';
+  // Validate the policy independently of which calendar supplies the lunar date.
+  if (!['split', 'next-month', 'prev-month', 'origin-month'].includes(leapMode)) throw new RangeError('Invalid leapMonth policy');
+  const vietnamRaw = isVietnam ? solarToCalendar({ year, month, day }, 'vietnam') : undefined;
+  const effectiveLunar = vietnamRaw ? (() => {
+    let lunarMonth = vietnamRaw.month;
+    let lunarYear = vietnamRaw.year;
+    if (vietnamRaw.isLeapMonth && (leapMode === 'next-month' || (leapMode === 'split' && vietnamRaw.day > 15))) lunarMonth++;
+    if (lunarMonth > 12) { lunarMonth = 1; lunarYear++; }
+    return { lunarYear, lunarMonth, lunarDay: vietnamRaw.day, isLeapMonth: vietnamRaw.isLeapMonth && leapMode === 'origin-month', rawLunarMonth: vietnamRaw.isLeapMonth ? -vietnamRaw.month : vietnamRaw.month, rawLunarDay: vietnamRaw.day };
+  })() : resolveEffectiveLunarDate(year, month, day, leapMode);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let astrolabe: any;
 
-  if (leapMode !== 'split' && effectiveLunar.rawLunarMonth < 0) {
+  if (isVietnam) {
+      const adapterDate = engineLunarDate({ year: effectiveLunar.lunarYear, month: effectiveLunar.lunarMonth, day: effectiveLunar.lunarDay });
+      astrolabe = astro.byLunar(`${adapterDate.year}-${adapterDate.month}-${adapterDate.day}`, hour, iztroGender, false, false, 'zh-CN');
+  } else if (leapMode !== 'split' && effectiveLunar.rawLunarMonth < 0) {
       // 闰月生人 → 按用户选项切换月份归属
       const lunarDateStr = `${effectiveLunar.lunarYear}-${effectiveLunar.lunarMonth}-${effectiveLunar.lunarDay}`;
       astrolabe = astro.byLunar(
@@ -503,6 +526,7 @@ export function generateChart(
   const chartBirthInfo = {
     ...birthInfo,
     leapMonthPolicy: leapMode,
+    profileVersion: isVietnam ? VIETNAM_PROFILE_VERSION : UPSTREAM_PROFILE_VERSION,
   } as BirthInfo & { leapMonthPolicy: LunarMonthPolicy };
 
   // ── 组装十二宫 ──
@@ -594,6 +618,10 @@ export function generateChart(
     // fallback：iztro 接口异常时回退到虚岁推导
     currentAge = new Date().getFullYear() - year + 1;
   }
+  if (vietnamRaw) {
+    const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Ho_Chi_Minh', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date()).split('-').map(Number);
+    currentAge = solarToCalendar({ year: today[0], month: today[1], day: today[2] }, 'vietnam').year - vietnamRaw.year + 1;
+  }
 
   palaces.forEach(p => {
     if (p.daXianAge && currentAge >= p.daXianAge[0] && currentAge <= p.daXianAge[1]) {
@@ -646,6 +674,17 @@ export function generateChart(
 
   // ── 农历信息（含节气四柱）──
   const lunarInfo = getLunarInfo(year, month, day, hour, leapMode);
+  if (vietnamRaw) {
+    lunarInfo.lunarYear = vietnamRaw.year;
+    lunarInfo.lunarMonth = vietnamRaw.isLeapMonth ? -vietnamRaw.month : vietnamRaw.month;
+    lunarInfo.lunarDay = vietnamRaw.day;
+    lunarInfo.isLeapMonth = vietnamRaw.isLeapMonth;
+    lunarInfo.yearStem = ((effectiveLunar.lunarYear - 4) % 10 + 10) % 10;
+    lunarInfo.yearBranch = ((effectiveLunar.lunarYear - 4) % 12 + 12) % 12;
+    // The upstream four-pillar fields use its Chinese calendar; omit them in this profile.
+    lunarInfo.fourPillars = undefined;
+    lunarInfo.fourPillarsLunar = undefined;
+  }
 
   // ★ 2026-08-14 金标准盘核对：截空/副截阴干对调 + 年支大耗 + 旬空成对副旬
   applySchoolJiekong(palaces, lunarInfo.yearStem);

@@ -6,4 +6,6 @@ node_modules/
 dist/
 *.tsbuildinfo
 .DS_Store
+/work/
+/data/v4/
 node_modules

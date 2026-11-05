@@ -8,6 +8,16 @@ export interface BirthInfo {
   province?: string;   // 出生省份
   city?: string;       // 出生城市
   longitude?: number;  // 出生地经度（用于真太阳时校正）
+  calendarSystem?: 'vietnam' | 'chinese';
+  calendarUtcOffsetMinutes?: 420 | 480;
+  utcOffsetMinutes?: number;
+  timeConvention?: 'clock' | 'solar' | 'legacy-longitude';
+  lateZishi?: 'next-day' | 'current-day';
+  leapMonthPolicy?: 'split' | 'next-month' | 'prev-month' | 'origin-month';
+  profileVersion?: string;
+  engineVersion?: 'current' | 'v4';
+  inputCalendar?: 'solar' | 'lunar';
+  originalCalendarDate?: { year: number; month: number; day: number; isLeapMonth: boolean };
   /**
    * 原始输入（用户在表单里实际填的时间），已知出生时间时始终保留。
    * 例：用户输入 5/9 23:55 → year/month/day 会被改成 5/10（次日子时），

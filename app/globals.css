@@ -2,6 +2,89 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Vietnamese workspace: readable controls, restrained gold and ink, local-first flow. */
+.vi-app { --t-bg: var(--bg-0); --t-surface: var(--bg-1); --t-text: var(--tx-1); --t-faint: var(--tx-2); --t-gold: var(--ac); --t-border: var(--bdr-med); max-width: 1440px; margin: auto; padding: 24px 28px; color: var(--t-text); font-family: 'Segoe UI', sans-serif; }
+.vi-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-bottom: 24px; border-bottom: 1px solid var(--t-border); }
+.vi-brand { font-family: Cambria, Georgia, serif; font-size: 28px; color: var(--t-gold); text-decoration: none; }
+.vi-entry { display: grid; grid-template-columns: minmax(260px, .8fr) minmax(0, 1.2fr); gap: clamp(28px, 6vw, 84px); padding: 48px 0; }
+.vi-intro { max-width: 450px; padding-top: 28px; }
+.vi-intro h1 { font-family: Cambria, Georgia, serif; font-weight: 400; font-size: clamp(34px, 4vw, 54px); line-height: 1.2; margin-bottom: 24px; color: var(--t-gold); }
+.vi-intro p, .vi-intro li { line-height: 1.8; font-size: 16px; }
+.vi-intro ul { list-style: disc; margin: 24px 0 24px 20px; }
+.vi-muted { color: var(--t-faint); font-size: 13px !important; line-height: 1.7; }
+.vi-form { display: flex; flex-direction: column; gap: 18px; padding: 28px; background: var(--t-surface); border: 1px solid var(--t-border); border-radius: 16px; }
+.vi-form-heading h2, .vi-reading h2, .vi-history h2 { font-family: Cambria, Georgia, serif; font-size: 24px; font-weight: 500; }
+.vi-form-heading span { display: block; margin-top: 6px; color: var(--t-faint); font-size: 13px; }
+.vi-form label { display: flex; flex-direction: column; gap: 7px; font-size: 14px; line-height: 1.5; }
+.vi-form input:not([type=checkbox]), .vi-form select { width: 100%; min-height: 44px; border: 1px solid var(--t-border); background: var(--t-bg); border-radius: 7px; padding: 9px 11px; color: inherit; font-size: 15px; }
+.vi-form select { text-overflow: ellipsis; }
+.vi-form select option { background: var(--t-bg); color: var(--t-text, inherit); }
+.vi-fields { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
+.vi-fields-three { grid-template-columns: repeat(3, minmax(0,1fr)); }
+.vi-form .vi-check { flex-direction: row; align-items: center; gap: 10px; cursor: pointer; }
+.vi-check input { width: 18px; height: 18px; accent-color: #b48c3d; }
+.vi-app button, .vi-app a, .vi-app summary, .vi-app input, .vi-app select { outline-offset: 4px; }
+.vi-app :focus-visible { outline: 2px solid #c9a85d; }
+.vi-primary { padding: 13px 18px; min-height: 46px; background: #b48c3d; color: #15130f; border: 1px solid #b48c3d; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; }
+.vi-primary:disabled, .vi-secondary:disabled { opacity: .5; cursor: not-allowed; }
+.vi-secondary { padding: 9px 13px; min-height: 40px; border: 1px solid var(--t-border); border-radius: 7px; background: var(--t-surface); color: inherit; font-size: 13px; cursor: pointer; }
+.vi-secondary:hover { border-color: var(--t-gold); }
+.vi-details { border-top: 1px solid var(--t-border); padding-top: 14px; font-size: 13px; line-height: 1.7; }
+.vi-details summary { cursor: pointer; color: var(--t-gold); margin-bottom: 12px; }
+.vi-details p { color: var(--t-faint); margin: 12px 0; }
+.vi-details > label { margin-bottom: 12px; }
+.vi-preview { padding: 12px 14px; border-left: 3px solid var(--t-gold); font-size: 14px; line-height: 1.7; background: var(--t-bg); }
+.vi-notice { padding: 13px 16px; margin: 18px 0; border: 1px solid var(--t-border); border-left: 3px solid var(--t-gold); border-radius: 4px; font-size: 14px; line-height: 1.7; overflow-wrap: anywhere; }
+.vi-error { color: #ef8b81; padding: 10px; font-size: 14px; }
+.vi-toolbar { display: flex; flex-wrap: wrap; gap: 8px; margin: 24px 0; }
+.vi-profile { margin: 24px 0; line-height: 1.8; }
+.vi-profile h1 { font-family: Cambria, Georgia, serif; font-size: 30px; margin-bottom: 10px; }
+.vi-result-grid { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(320px, 1fr); gap: 24px; align-items: start; }
+.vi-chart-section { min-width: 0; }
+.vi-board-scroll { overflow-x: auto; border-radius: 12px; }
+.vi-board-scroll > .w-full { min-width: 560px; }
+.vi-scroll-hint { display: none; }
+.vi-chart-section > p { margin-top: 14px; }
+.vi-reading { min-width: 0; border: 1px solid var(--t-border); background: var(--t-surface); border-radius: 12px; padding: 24px; line-height: 1.8; font-size: 14px; }
+.vi-reading > p { margin: 12px 0; }
+.vi-reading h3 { font-family: Cambria, Georgia, serif; font-size: 23px; margin: 20px 0 12px; }
+.vi-result-grid:has(.vi-reading-detailed) { grid-template-columns: minmax(0, 1fr); }
+.vi-result-grid:has(.vi-reading-detailed) > .vi-chart-section { width: 100%; max-width: 980px; margin: 0 auto; }
+.vi-reading-detailed { width: 100%; max-width: 980px; margin: 0 auto; padding: clamp(20px, 4vw, 48px); }
+.vi-detailed-content { max-width: 76ch; }
+.vi-reading-intro { font-size: 16px; line-height: 1.85; }
+.vi-reading-index { display: flex; flex-wrap: wrap; gap: 8px 20px; padding: 18px 0; margin: 18px 0; border-block: 1px solid var(--t-border); }
+.vi-reading-index a { color: var(--t-gold); text-decoration: underline; text-underline-offset: 3px; }
+.vi-reading-section { margin: 30px 0; scroll-margin-top: 24px; }
+.vi-reading-section h4 { font-family: Cambria, Georgia, serif; font-size: 23px; line-height: 1.4; margin-bottom: 18px; color: var(--t-gold); }
+.vi-reading-item { margin: 20px 0 26px; }
+.vi-reading-item h5 { font-size: 16px; font-weight: 600; line-height: 1.6; margin-bottom: 8px; }
+.vi-reading-item > p { font-size: 15px; line-height: 1.85; }
+.vi-reading-evidence { margin-top: 10px; border-left: 2px solid var(--t-border); padding-left: 14px; font-size: 13px; overflow-wrap: anywhere; }
+.vi-reading-evidence summary { color: var(--t-faint); cursor: pointer; line-height: 1.6; }
+.vi-reading-evidence ul, .vi-reading-limits ul { list-style: disc; padding-left: 20px; margin: 10px 0; }
+.vi-reading-sources { color: var(--t-faint); }
+.vi-reading-sources a { text-decoration: underline; }
+.vi-reflection-list { list-style: decimal; padding-left: 24px; }
+.vi-reflection-list li { margin: 10px 0; }
+.vi-topic-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 18px 0; }
+.vi-topic-tabs button { padding: 7px 10px; font-size: 13px; border: 1px solid var(--t-border); border-radius: 5px; background: transparent; color: inherit; cursor: pointer; }
+.vi-topic-tabs button[aria-pressed=true] { border-color: var(--t-gold); color: var(--t-gold); background: var(--t-bg); }
+.vi-evidence { list-style: disc; padding: 14px 14px 14px 30px; background: var(--t-bg); border-radius: 6px; }
+.vi-original { white-space: pre-wrap; overflow-wrap: anywhere; max-height: 560px; overflow: auto; padding: 16px; background: var(--t-bg); font-size: 14px; font-family: inherit; }
+.vi-history { padding: 24px 0; }
+.vi-history > div { display: flex; gap: 10px; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--t-border); }
+.vi-history button { text-align: left; font-size: 14px; line-height: 1.6; color: var(--t-gold); }
+.vi-footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--t-border); color: var(--t-faint); font-size: 13px; line-height: 1.8; }
+.vi-footer summary { cursor: pointer; margin: 12px 0; }
+.vi-footer a { text-decoration: underline; }
+.vi-footer ul { padding-left: 20px; list-style: disc; }
+html[data-theme=light] .vi-app .text-amber-300 { color: #76530d; }
+@media(max-width: 900px) { .vi-entry { grid-template-columns: 1fr; gap: 28px; padding: 28px 0; } .vi-intro { max-width: 680px; padding-top: 0; } .vi-intro h1 br { display: none; } .vi-result-grid { grid-template-columns: 1fr; } }
+@media(max-width: 540px) { .vi-app { padding: 16px 12px; } .vi-form { padding: 18px 14px; } .vi-form .vi-fields:not(.vi-fields-three) { grid-template-columns: 1fr; } .vi-reading { padding: 18px 14px; } .vi-intro h1 { font-size: 34px; } .vi-brand { font-size: 24px; } .vi-scroll-hint { display: block; } }
+@media(prefers-reduced-motion: reduce) { .vi-app *, .vi-app *::before, .vi-app *::after { animation: none !important; transition: none !important; } }
+@media print { .vi-toolbar, .vi-header button, .vi-topic-tabs, .vi-reading details, .vi-scroll-hint { display: none !important; } .vi-app { --t-bg: white; --t-surface: white; --t-text: #111; --t-faint: #555; --t-gold: #6f520d; --t-border: #aaa; max-width: none; padding: 0; color: #111; } .vi-result-grid { display: block; } .vi-board-scroll { overflow: visible; } .vi-reading { margin-top: 20px; break-inside: avoid; } html, body { background: white !important; } }
+
 /* ─── 2.0 设计系统 Token ─────────────────────────────────── */
 :root {
   /* 字体 */

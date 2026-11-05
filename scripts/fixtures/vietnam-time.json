@@ -1,0 +1,45 @@
+{
+  "scope": "Helper giờ sinh; chưa chứng minh form, lịch âm Việt hoặc quy tắc an sao đã tích hợp.",
+  "sources": [
+    "https://gml.noaa.gov/grad/solcalc/solareqns.PDF",
+    "https://github.com/eggert/tz/blob/main/asia"
+  ],
+  "cases": [
+    {
+      "id": "hanoi-modern-utc7",
+      "evidence": "Ca hồi quy từ review; kiểm tra tránh hiệu chỉnh nhầm kinh tuyến 120E. Giờ sinh thử nghiệm, không phải dữ liệu cá nhân.",
+      "input": { "year": 2000, "month": 7, "day": 15, "clockHour": 11, "clockMinute": 30, "longitude": 105.8342, "utcOffsetMinutes": 420 },
+      "expected": { "branch": 6, "dayOffset": 0, "longitudeCorrectionMinutes": 3.3368, "nextDayDate": { "year": 2000, "month": 7, "day": 15 } }
+    },
+    {
+      "id": "utc7-central-meridian",
+      "evidence": "Kinh tuyến UTC+7 là 105E; phần hiệu chỉnh kinh độ bằng 0. Thời điểm cách xa biên giờ để không coi gần đúng NOAA là oracle chính xác tới giây.",
+      "input": { "year": 2000, "month": 7, "day": 15, "clockHour": 8, "clockMinute": 0, "longitude": 105, "utcOffsetMinutes": 420 },
+      "expected": { "branch": 4, "dayOffset": 0, "longitudeCorrectionMinutes": 0, "nextDayDate": { "year": 2000, "month": 7, "day": 15 } }
+    },
+    {
+      "id": "clock-before-01",
+      "evidence": "Không có kinh độ: không hiệu chỉnh giờ mặt trời. 00:59 thuộc branch 0 theo quy ước helper.",
+      "input": { "year": 2000, "month": 7, "day": 15, "clockHour": 0, "clockMinute": 59, "utcOffsetMinutes": 420 },
+      "expected": { "branch": 0, "dayOffset": 0, "longitudeCorrectionMinutes": 0, "nextDayDate": { "year": 2000, "month": 7, "day": 15 } }
+    },
+    {
+      "id": "clock-at-01",
+      "evidence": "01:00 thuộc branch 1 theo quy ước helper, không hiệu chỉnh khi thiếu kinh độ.",
+      "input": { "year": 2000, "month": 7, "day": 15, "clockHour": 1, "clockMinute": 0, "utcOffsetMinutes": 420 },
+      "expected": { "branch": 1, "dayOffset": 0, "longitudeCorrectionMinutes": 0, "nextDayDate": { "year": 2000, "month": 7, "day": 15 } }
+    },
+    {
+      "id": "late-ty-leap-day",
+      "evidence": "Quy tắc next-day tại 23:30 chuyển từ 28/02/2000 sang ngày nhuận. current-day giữ ngày gốc; đây là lựa chọn trường phái, không phải khẳng định mọi hệ Tử Vi dùng next-day.",
+      "input": { "year": 2000, "month": 2, "day": 28, "clockHour": 23, "clockMinute": 30, "utcOffsetMinutes": 420 },
+      "expected": { "branch": 0, "dayOffset": 0, "longitudeCorrectionMinutes": 0, "nextDayDate": { "year": 2000, "month": 2, "day": 29 }, "currentDayDate": { "year": 2000, "month": 2, "day": 28 } }
+    },
+    {
+      "id": "late-ty-year-boundary",
+      "evidence": "Quy tắc next-day chuyển 31/12 sang 01/01 năm sau; current-day giữ ngày gốc.",
+      "input": { "year": 2000, "month": 12, "day": 31, "clockHour": 23, "clockMinute": 30, "utcOffsetMinutes": 420 },
+      "expected": { "branch": 0, "dayOffset": 0, "longitudeCorrectionMinutes": 0, "nextDayDate": { "year": 2001, "month": 1, "day": 1 }, "currentDayDate": { "year": 2000, "month": 12, "day": 31 } }
+    }
+  ]
+}

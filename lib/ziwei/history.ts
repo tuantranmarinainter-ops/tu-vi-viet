@@ -4,6 +4,13 @@ import type { BirthFormState } from '@/components/BirthForm';
 const STORAGE_KEY = 'ziwei_history';
 const MAX_ENTRIES = 10;
 
+export function historyKey(form: BirthFormState): string {
+  return JSON.stringify([form.year, form.month, form.day, form.clockHour, form.clockMinute,
+    form.gender, form.unknownTime, form.longitude, form.utcOffsetMinutes ?? 480,
+    form.calendarSystem ?? 'chinese', form.inputCalendar ?? 'solar', !!form.lunarLeap,
+    form.timeConvention ?? 'legacy-longitude', form.lateZishi ?? 'next-day', form.leapMonthPolicy ?? 'split', form.engineVersion ?? 'current']);
+}
+
 export interface HistoryEntry {
   id: string;
   label: string;
@@ -24,9 +31,9 @@ export function useHistory() {
   const save = useCallback((form: BirthFormState) => {
     const label = [
       form.name,
-      `${form.year}年${form.month}月${form.day}日`,
+      `${form.day}/${form.month}/${form.year}`,
       form.city || form.province || '',
-      form.gender === 'male' ? '男' : '女',
+      form.gender === 'male' ? 'Nam' : 'Nữ',
     ].filter(Boolean).join(' · ');
 
     const entry: HistoryEntry = {
@@ -39,12 +46,7 @@ export function useHistory() {
     setHistory(prev => {
       // 去重：相同出生年月日+性别+时辰视为同一条记录
       const deduped = prev.filter(e =>
-        !(e.form.year === form.year &&
-          e.form.month === form.month &&
-          e.form.day === form.day &&
-          e.form.gender === form.gender &&
-          e.form.clockHour === form.clockHour &&
-          e.form.clockMinute === form.clockMinute)
+        historyKey(e.form) !== historyKey(form)
       );
       const updated = [entry, ...deduped].slice(0, MAX_ENTRIES);
       try { localStorage.setItem(STORAGE_KEY, JSON.stringify(updated)); } catch {}
