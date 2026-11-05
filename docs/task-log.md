@@ -51,6 +51,7 @@ Ngày 04/11/2026: `codex features list` đọc cấu hình mà không báo lỗi
 - Phạm vi bản phát hành: toàn bộ mã và tài liệu bản đầu đã có trong workspace, cùng README dẫn tới hướng dẫn Việt và docs/releases/v0.1.md. Giữ các thay đổi next-env.d.ts/tsconfig.json có trước; không khôi phục chúng. Dọn dòng trắng cuối một số tệp để diff --check đạt, không sửa logic.
 - Kiểm tra nghiệm thu: doctor, typecheck, 21/21 chương trình regression và production build Webpack đạt trên Node 22.23.4. Build đầu bị sandbox chặn mkdir trong .next; chạy lại với quyền môi trường phù hợp thành công. Đã kiểm tra tệp staged, mẫu khóa bí mật và đường dẫn loại trừ; không đưa work/, data/v4/, runtime, dependency hay .env thật vào bản phát hành.
 - Đích phát hành: nhánh main và tag v0.1, package 0.1.0; ghi chú nêu rõ giới hạn lịch lịch sử, luận giải bản mệnh, dữ liệu v4 và giấy phép nguồn. Không dùng subagent hoặc API AI; usage chưa đo.
+- CI đầu tiên sau push phát hiện neutral-naming quét tệp git-tracked và bắt một symbol còn sót trong comment đường dẫn nguồn của school-data tham chiếu. Sửa đúng comment đó thành tên trung lập, giữ tag nguồn/UPSTREAM và giấy phép, không đổi bài kiểm tra hoặc logic. Đây là lý do kết quả trước commit khác CI; kiểm tra lại sau khi toàn bộ tệp đã được track.
 
 ## Mẫu cho lần tiếp theo
 

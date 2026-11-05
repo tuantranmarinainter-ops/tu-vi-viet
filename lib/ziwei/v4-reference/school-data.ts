@@ -2,7 +2,7 @@
  * 参考排盘软件 紫微斗数算法原始数据
  *
  * 来源：参考排盘软件基础版 v2.5.8 安卓 APK 反编译
- *   文件：assets/App.swf → decompiled/scripts/.../WenMoTianJiKFB38CA8D46F14E1D8405A49E97304248K.as
+ *   文件：assets/App.swf → decompiled/scripts/.../[reference-class].as（原路径见 UPSTREAM.md 所列 tag）
  *   反编译方式：FFDec 26.0.0 + 自研「斌斌SWF加密器」破解
  *   破解原理：.bin 前 21 byte 被替换为乱码，21 个 dead-code magic numbers 的低字节就是真实 zlib header
  *
