@@ -75,6 +75,12 @@ export interface Palace {
   isCurrentDaXian?: boolean;
   isMingGong?: boolean;
   isShenGong?: boolean;
+  /** Vòng Tràng sinh (长生十二神) của cung — tên gốc iztro, dịch ở lớp hiển thị */
+  changSheng?: string;
+  /** Vòng Bác sĩ (博士十二神) */
+  boShi?: string;
+  /** Vòng Thái Tuế (岁前十二神) */
+  suiQian?: string;
   /** 宫干自化（倪师体系核心） */
   selfSihua?: SelfSihuaMark[];
   /** 对宫地支索引（永远 = (branch + 6) % 12） */

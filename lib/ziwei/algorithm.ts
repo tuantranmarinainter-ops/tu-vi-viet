@@ -598,6 +598,9 @@ export function generateChart(
       daXianAge:     range ? [range[0], range[1]] as [number, number] : undefined,
       isMingGong:    p.name === '命宫',
       isShenGong:    p.isBodyPalace ?? false,
+      changSheng:    p.changsheng12 as string | undefined,
+      boShi:         p.boshi12 as string | undefined,
+      suiQian:       p.suiqian12 as string | undefined,
       isCurrentDaXian: false,
     };
   });
