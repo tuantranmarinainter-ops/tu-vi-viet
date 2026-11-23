@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "node scripts/dev/run.mjs dev",
     "build": "node scripts/dev/run.mjs build",
+    "build:static": "node scripts/dev/build-static.mjs",
     "start": "node scripts/dev/run.mjs start",
     "typecheck": "tsc --noEmit",
     "doctor": "node scripts/dev/run.mjs doctor",

@@ -93,3 +93,20 @@ Bài mở rộng chỉ đọc bản mệnh. Khi chuyển Đại hạn/Lưu niên
 - Từ điển nền: iztro (MIT); bản hiển thị tuân theo glossary của project.
 - Lịch Việt: @nghiavuive/lunar_date_vi 2.0.1 (ISC), NghiaCaNgao, dựa trên công trình Hồ Ngọc Đức.
 - Dữ liệu v4 và các trích dẫn theo [DATASET-LICENSE](DATASET-LICENSE); xem thêm [README gốc](README.en.md).
+
+## Đưa lên web (tuanchau.io.vn)
+
+Có hai cách đóng gói từ cùng một mã nguồn:
+
+| Lệnh | Kết quả | Cần máy chủ |
+|---|---|---|
+| `npm.cmd run build:static` | Thư mục `out/` gồm HTML/JS tĩnh | Không: chép lên bất kỳ hosting nào |
+| `npm.cmd run build` rồi `npm.cmd run start` | Ứng dụng Next.js đầy đủ | Có: Node 22.15+ |
+
+Bản tĩnh:
+
+1. Đặt địa chỉ trang trong `.env.local`: `NEXT_PUBLIC_SITE_URL=https://tuanchau.io.vn`.
+2. Nếu đặt trong thư mục con (ví dụ `https://tuanchau.io.vn/tuvi/`), chạy với `TUVI_BASE_PATH=/tuvi`. PowerShell: `$env:TUVI_BASE_PATH='/tuvi'; npm.cmd run build:static`.
+3. Chép toàn bộ nội dung `out/` lên hosting. Trang lá số ở `/chart/`.
+
+Bản tĩnh không có tính năng đối chiếu luận giải v4 và trang tìm kiếm cổ thư (hai phần này cần máy chủ). Lá số được tính ngay trên trình duyệt; thông tin sinh không gửi đi đâu.
