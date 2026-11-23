@@ -53,6 +53,20 @@ Ngày 04/11/2026: `codex features list` đọc cấu hình mà không báo lỗi
 - Đích phát hành: nhánh main và tag v0.1, package 0.1.0; ghi chú nêu rõ giới hạn lịch lịch sử, luận giải bản mệnh, dữ liệu v4 và giấy phép nguồn. Không dùng subagent hoặc API AI; usage chưa đo.
 - CI đầu tiên sau push phát hiện neutral-naming quét tệp git-tracked và bắt một symbol còn sót trong comment đường dẫn nguồn của school-data tham chiếu. Sửa đúng comment đó thành tên trung lập, giữ tag nguồn/UPSTREAM và giấy phép, không đổi bài kiểm tra hoặc logic. Đây là lý do kết quả trước commit khác CI; kiểm tra lại sau khi toàn bộ tệp đã được track.
 
+## UI-LASO-VIET-1 — Giao diện lá số Việt đợt 1 (tuanchau.io.vn) — 23/11/2026
+
+- Mã / mục tiêu: thay lá số, form và bản in trên /chart theo mẫu lá số Việt (tham chiếu bố cục lyso.vn) đã được anh Tuấn duyệt; thêm bản web tĩnh (`build:static`). Thiết kế: docs/superpowers/specs/2026-11-23-giao-dien-la-so-viet-design.md; kế hoạch: docs/superpowers/plans/2026-11-23-giao-dien-la-so-viet.md. Nhánh giao-dien-la-so-viet.
+- Model / reasoning thực sự dùng: Claude Opus 5.5 (claude.ai), một phiên, không subagent.
+- Tệp đã sửa: lib/la-so/* (mới: tên Việt, ngũ hành, hạn, lưới, Thiên bàn, cung), components/la-so/* (mới), components/BirthForm.tsx, components/VietnameseReadings.tsx, app/chart/*, lib/ziwei/types.ts + algorithm.ts (chỉ thêm 3 trường vòng sao), lib/ziwei/share.ts, next.config.js, scripts/dev/build-static.mjs, 8 tệp scripts/regression/la-so-*.test.ts.
+- Tiêu chí nghiệm thu và kết quả: run-all 29/29 đạt (máy Claude, Node 22.23.5, phụ thuộc dựng từ mã GitHub vì không cài được npm; lunar-javascript 1.7.8, lunar-lite 0.2.9, lunar-typescript 1.8.7 thay vì đúng bản trong lock). Component lá số và form render thật qua shim JSX + Chrome headless; bản in Chrome PDF: trang 1 chỉ lá số, luận giải 13 chủ đề từ trang 2. **Chưa chạy ở đây:** `typecheck` (không có React/Next types), `next build`, `build:static` — cần chạy trên máy anh Tuấn.
+- Đối chiếu một lá số lyso.vn mẫu (dữ liệu sinh thật, chỉ ở work/, không commit):
+  - Khớp: vị trí 14 chính tinh, tên/can 12 cung, số đại hạn, vòng Tràng sinh/Bác sĩ/Thái Tuế (36/36), tiểu hạn 12/12, "tháng" 12/12, sao lưu niên L. (tứ hóa, Lộc Tồn, Kình, Đà, Mã), Tuần/Triệt, Thiên bàn 14/14 mục.
+  - Lệch (để đợt 2): độ sáng 6/14 chính tinh (engine dùng bảng miếu/hãm Trung Quốc; không bảng nào QS/XD1/ZZ/XD2 khớp lá số Việt); Hỏa Tinh (engine Ngọ, lyso Tuất); Đại Hao/Tiểu Hao; thiếu sao Việt: Lưu Hà, Quốc Ấn, Đường Phù, Văn Tinh, Đẩu Quân, Thiên La, Địa Võng, Thiên Giải, Địa Giải, Thiên Y; engine có thêm Thiên Vu, Âm Sát, Niên Giải, Thiên Nguyệt.
+- Quy ước suy từ một mẫu, cần lá số lyso thứ hai (năm xem khác) để xác nhận: số "tháng" mỗi cung = cung Mệnh mang tháng sinh âm lịch, đếm thuận.
+- Điều chỉnh so với thiết kế: bỏ lưu Khôi/Việt/Xương/Khúc (lyso không hiện); chỉ ghi độ sáng cho chính tinh, tứ hóa và 15 phụ tinh lyso có ghi; cột phụ tinh dài nhất đo được 11 dòng nên hàng lưới tự giãn và lá số tự co vừa A4 khi in; bản tĩnh tạm cất cả app/library/search.
+- Usage: chưa đo.
+- Phần còn thiếu / quyết định tiếp theo: anh Tuấn chạy `npm.cmd run typecheck`, `npm.cmd test`, `npm.cmd run build`, `npm.cmd run build:static`, xem /chart và PDF; đợt 2 bổ sung bộ sao và bảng miếu/hãm Việt.
+
 ## Mẫu cho lần tiếp theo
 
 ```text
