@@ -81,10 +81,10 @@ node node_modules/tsx/dist/cli.mjs scripts/regression/run-all.ts   # phải đ�
 | 13 | 2. Lời giảng Nghê Hải Hạ | `docs/tianji-ziwei/11上.md` | 8,170 | CC BY-NC-SA 4.0 | `docs/dich/vi/docs/tianji-ziwei/11上.md` | xong |
 | 14 | 2. Lời giảng Nghê Hải Hạ | `docs/tianji-ziwei/12上.md` | 7,593 | CC BY-NC-SA 4.0 | `docs/dich/vi/docs/tianji-ziwei/12上.md` | xong |
 | 15 | 2. Lời giảng Nghê Hải Hạ | `docs/tianji-ziwei/13上.md` | 8,384 | CC BY-NC-SA 4.0 | `docs/dich/vi/docs/tianji-ziwei/13上.md` | xong |
-| 16 | 2. Lời giảng Nghê Hải Hạ | `docs/tianji-ziwei/14上.md` | 7,064 | CC BY-NC-SA 4.0 | `docs/dich/vi/docs/tianji-ziwei/14上.md` | chưa |
-| 17 | 2. Lời giảng Nghê Hải Hạ | `docs/tianji-ziwei/15上.md` | 8,496 | CC BY-NC-SA 4.0 | `docs/dich/vi/docs/tianji-ziwei/15上.md` | chưa |
-| 18 | 2. Lời giảng Nghê Hải Hạ | `docs/tianji-ziwei/19上_补充1.md` | 6,464 | CC BY-NC-SA 4.0 | `docs/dich/vi/docs/tianji-ziwei/19上_补充1.md` | chưa |
-| 19 | 2. Lời giảng Nghê Hải Hạ | `docs/tianji-ziwei/24下_补充2.md` | 2,767 | CC BY-NC-SA 4.0 | `docs/dich/vi/docs/tianji-ziwei/24下_补充2.md` | chưa |
+| 16 | 2. Lời giảng Nghê Hải Hạ | `docs/tianji-ziwei/14上.md` | 7,064 | CC BY-NC-SA 4.0 | `docs/dich/vi/docs/tianji-ziwei/14上.md` | đang: nhận 2026-11-23 09:55 UTC |
+| 17 | 2. Lời giảng Nghê Hải Hạ | `docs/tianji-ziwei/15上.md` | 8,496 | CC BY-NC-SA 4.0 | `docs/dich/vi/docs/tianji-ziwei/15上.md` | đang: nhận 2026-11-23 09:55 UTC |
+| 18 | 2. Lời giảng Nghê Hải Hạ | `docs/tianji-ziwei/19上_补充1.md` | 6,464 | CC BY-NC-SA 4.0 | `docs/dich/vi/docs/tianji-ziwei/19上_补充1.md` | đang: nhận 2026-11-23 09:55 UTC |
+| 19 | 2. Lời giảng Nghê Hải Hạ | `docs/tianji-ziwei/24下_补充2.md` | 2,767 | CC BY-NC-SA 4.0 | `docs/dich/vi/docs/tianji-ziwei/24下_补充2.md` | đang: nhận 2026-11-23 09:55 UTC |
 | 20 | 2. Lời giảng Nghê Hải Hạ | `docs/tianji-ziwei/2上.md` | 7,018 | CC BY-NC-SA 4.0 | `docs/dich/vi/docs/tianji-ziwei/2上.md` | chưa |
 | 21 | 2. Lời giảng Nghê Hải Hạ | `docs/tianji-ziwei/3上.md` | 7,319 | CC BY-NC-SA 4.0 | `docs/dich/vi/docs/tianji-ziwei/3上.md` | chưa |
 | 22 | 2. Lời giảng Nghê Hải Hạ | `docs/tianji-ziwei/4上.md` | 10,745 | CC BY-NC-SA 4.0 | `docs/dich/vi/docs/tianji-ziwei/4上.md` | chưa |
