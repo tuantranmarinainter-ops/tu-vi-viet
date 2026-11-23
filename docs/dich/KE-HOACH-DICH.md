@@ -74,10 +74,10 @@ node node_modules/tsx/dist/cli.mjs scripts/regression/run-all.ts   # phải đ�
 | 6 | 1. Cách cục / hợp hôn | `lib/ziwei/heming-knowledge.ts` | 4,334 | MIT | `lib/la-so/cach-cuc/ (bản TS tiếng Việt, logic giữ nguyên)` | xong |
 | 7 | 2. Lời giảng Nghê Hải Hạ | `lib/nihai/diji.ts` | 1,377 | CC BY-NC-SA 4.0 | `docs/dich/vi/lib/nihai/diji.ts` | xong |
 | 8 | 2. Lời giảng Nghê Hải Hạ | `lib/nihai/index.ts` | 1,091 | CC BY-NC-SA 4.0 | `docs/dich/vi/lib/nihai/index.ts` | xong |
-| 9 | 2. Lời giảng Nghê Hải Hạ | `lib/nihai/renji.ts` | 7,549 | CC BY-NC-SA 4.0 | `docs/dich/vi/lib/nihai/renji.ts` | đang: nhận 2026-11-23 08:12 UTC |
-| 10 | 2. Lời giảng Nghê Hải Hạ | `lib/nihai/tianji.ts` | 6,678 | CC BY-NC-SA 4.0 | `docs/dich/vi/lib/nihai/tianji.ts` | đang: nhận 2026-11-23 08:12 UTC |
-| 11 | 2. Lời giảng Nghê Hải Hạ | `lib/nihai/types.ts` | 247 | CC BY-NC-SA 4.0 | `docs/dich/vi/lib/nihai/types.ts` | đang: nhận 2026-11-23 08:12 UTC |
-| 12 | 2. Lời giảng Nghê Hải Hạ | `docs/tianji-ziwei/10上.md` | 12,035 | CC BY-NC-SA 4.0 | `docs/dich/vi/docs/tianji-ziwei/10上.md` | đang: nhận 2026-11-23 08:12 UTC |
+| 9 | 2. Lời giảng Nghê Hải Hạ | `lib/nihai/renji.ts` | 7,549 | CC BY-NC-SA 4.0 | `docs/dich/vi/lib/nihai/renji.ts` | xong |
+| 10 | 2. Lời giảng Nghê Hải Hạ | `lib/nihai/tianji.ts` | 6,678 | CC BY-NC-SA 4.0 | `docs/dich/vi/lib/nihai/tianji.ts` | xong |
+| 11 | 2. Lời giảng Nghê Hải Hạ | `lib/nihai/types.ts` | 247 | CC BY-NC-SA 4.0 | `docs/dich/vi/lib/nihai/types.ts` | xong |
+| 12 | 2. Lời giảng Nghê Hải Hạ | `docs/tianji-ziwei/10上.md` | 12,035 | CC BY-NC-SA 4.0 | `docs/dich/vi/docs/tianji-ziwei/10上.md` | xong |
 | 13 | 2. Lời giảng Nghê Hải Hạ | `docs/tianji-ziwei/11上.md` | 8,170 | CC BY-NC-SA 4.0 | `docs/dich/vi/docs/tianji-ziwei/11上.md` | chưa |
 | 14 | 2. Lời giảng Nghê Hải Hạ | `docs/tianji-ziwei/12上.md` | 7,593 | CC BY-NC-SA 4.0 | `docs/dich/vi/docs/tianji-ziwei/12上.md` | chưa |
 | 15 | 2. Lời giảng Nghê Hải Hạ | `docs/tianji-ziwei/13上.md` | 8,384 | CC BY-NC-SA 4.0 | `docs/dich/vi/docs/tianji-ziwei/13上.md` | chưa |
