@@ -56,3 +56,11 @@ test('Chỉ ghi độ sáng cho chính tinh, tứ hóa và nhóm sao lá số Vi
     if (m && !m[1].startsWith('Hóa ')) assert.ok(coGhi.has(m[1]), `không được ghi độ sáng: ${s.ten}`);
   }
 });
+
+test('Không hiện Đại Hao năm chi và Phi Liêm (蜚廉) kiểu Trung Quốc: mỗi tên chỉ một lần trên lá số', () => {
+  for (const ch of laSoNgauNhien(100)) {
+    const ten = cungHienThi(ch, 2026).flatMap(x => [...x.trai, ...x.phai]).map(s => s.ten.replace(/ \(.\)$/, ''));
+    assert.equal(ten.filter(t => t === 'Phi Liêm').length, 1);
+    assert.equal(ten.filter(t => t === 'Đại Hao').length, 1);
+  }
+});

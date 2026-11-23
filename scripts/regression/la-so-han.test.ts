@@ -18,12 +18,16 @@ test('Tiểu hạn: song ánh, khởi theo tam hợp, nam thuận nữ nghịch'
   }
 });
 
-test('Tháng: song ánh 1..12, cung Mệnh mang tháng sinh, tháng nhuận dùng trị tuyệt đối', () => {
-  const t = thangHan(nam);
+test('Tháng: tháng Giêng = từ cung tiểu hạn năm xem đếm nghịch tới tháng sinh, rồi thuận tới giờ sinh', () => {
+  // 1/1/1990 giờ Tý, nam: năm âm Kỷ Tị (1989), tháng 12. Tiểu hạn khởi Mùi (Tị Dậu Sửu), nam thuận → năm Ngọ 2026 ở Thân.
+  // Từ Thân nghịch 11 cung tới tháng 12 → Dậu; thuận 0 cung (giờ Tý) → tháng Giêng ở Dậu.
+  const t = thangHan(nam, 2026);
   assert.deepEqual(Object.values(t).sort((a, b) => a - b), [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
-  assert.equal(t[nam.mingGongBranch], Math.abs(nam.lunarInfo.lunarMonth));
+  assert.equal(t[9], 1);
+  assert.equal(t[10], 2);
+  assert.equal(thangHan(nam, 2027)[10], 1, 'năm xem đổi thì tháng Giêng dời theo tiểu hạn');
   const nhuan = { ...nam, lunarInfo: { ...nam.lunarInfo, lunarMonth: -nam.lunarInfo.lunarMonth, isLeapMonth: true } };
-  assert.deepEqual(thangHan(nhuan), t);
+  assert.deepEqual(thangHan(nhuan, 2026), t);
 });
 
 test('Đại hạn theo năm xem; chưa vào đại hạn thì null', () => {

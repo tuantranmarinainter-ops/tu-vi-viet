@@ -26,10 +26,10 @@ function viTriRanh(a: number, b: number): { x: number; y: number } {
   return { x: (p.cot - 0.5) * 25, y: Math.min(p.hang, q.hang) * 25 };
 }
 
-/** Nhãn Tuần, Triệt đặt trên ranh giới; cùng một cặp cung thì gộp "Tuần · Triệt". */
+/** Nhãn Tuần, Triệt đặt trên ranh giới; cùng một cặp cung thì gộp "Tuần - Triệt". */
 export function nhanTuanTriet(chart: ZiweiChart): { nhan: string; x: number; y: number }[] {
   const tuan = capCung(chart, TUAN), triet = capCung(chart, TRIET);
-  if (tuan && triet && tuan[0] === triet[0] && tuan[1] === triet[1]) return [{ nhan: 'Tuần · Triệt', ...viTriRanh(...tuan) }];
+  if (tuan && triet && tuan[0] === triet[0] && tuan[1] === triet[1]) return [{ nhan: 'Tuần - Triệt', ...viTriRanh(...tuan) }];
   const out: { nhan: string; x: number; y: number }[] = [];
   if (tuan) out.push({ nhan: 'Tuần', ...viTriRanh(...tuan) });
   if (triet) out.push({ nhan: 'Triệt', ...viTriRanh(...triet) });

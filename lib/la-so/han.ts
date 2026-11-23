@@ -30,13 +30,18 @@ export function tieuHanNam(chart: ZiweiChart): Record<number, number> {
 }
 
 /**
- * Số tháng ở góc dưới mỗi cung: cung Mệnh mang tháng sinh âm lịch, đếm thuận.
- * Quy tắc suy từ một lá số mẫu lyso.vn — cần lá số mẫu thứ hai để xác nhận.
+ * Số tháng (nguyệt hạn) ở góc dưới mỗi cung, theo năm xem: từ cung tiểu hạn của năm xem
+ * đếm nghịch tới tháng sinh âm lịch, rồi đếm thuận tới giờ sinh → tháng Giêng; các tháng sau đi thuận.
+ * Đã khớp hai lá số mẫu lyso.vn (năm xem 2026).
  */
-export function thangHan(chart: ZiweiChart): Record<number, number> {
+export function thangHan(chart: ZiweiChart, namXem: number): Record<number, number> {
+  const chiNamXem = m12(namXem - 4);
+  const tieuHan = tieuHanNam(chart);
+  const cungTieuHan = Number(Object.keys(tieuHan).find(b => tieuHan[Number(b)] === chiNamXem));
   const thangSinh = Math.abs(chart.lunarInfo.lunarMonth);
+  const gieng = m12(cungTieuHan - (thangSinh - 1) + chart.birthInfo.hour);
   const out: Record<number, number> = {};
-  for (let b = 0; b < 12; b++) out[b] = m12(b - chart.mingGongBranch + thangSinh - 1) + 1;
+  for (let b = 0; b < 12; b++) out[b] = m12(b - gieng) + 1;
   return out;
 }
 

@@ -36,7 +36,7 @@ test('Sáu cặp Tuần đều nằm trên ranh giới trong lưới', () => {
 });
 
 test('Tuần và Triệt cùng cặp gộp một nhãn', () => {
-  assert.deepEqual(nhanTuanTriet(gia({ tuan: [0, 1], triet: [1, 0] })), [{ nhan: 'Tuần · Triệt', x: 50, y: 75 }]);
+  assert.deepEqual(nhanTuanTriet(gia({ tuan: [0, 1], triet: [1, 0] })), [{ nhan: 'Tuần - Triệt', x: 50, y: 75 }]);
 });
 
 test('Tam phương từ Mệnh Tý', () => {

@@ -20,8 +20,12 @@ export const SO_DONG_TOI_DA = 12;
 const TEN_HOA: Record<string, string> = { '禄': 'Lộc', '权': 'Quyền', '科': 'Khoa', '忌': 'Kỵ' };
 const BOSHI_CAT = new Set(['Bác Sĩ', 'Thanh Long', 'Tướng Quân', 'Tấu Thư', 'Hỷ Thần']);
 const SUIQIAN_CAT = new Set(['Long Đức', 'Phúc Đức']);
-/** Sao engine chèn từ vòng Thái Tuế; vòng đã hiện nên bỏ để khỏi lặp. */
-const SAO_TU_VONG = new Set(['龙德']);
+/**
+ * Sao engine có nhưng lá số Việt không dùng ở dạng này, bỏ khỏi cột:
+ * 龙德 (vòng Thái Tuế đã hiện Long Đức), 大耗 theo chi năm và 蜚廉 kiểu Trung Quốc
+ * (trùng tên Đại Hao, Phi Liêm của vòng Bác sĩ — đối chiếu hai lá số lyso.vn).
+ */
+const SAO_TU_VONG = new Set(['龙德', '大耗', '蜚廉']);
 
 /** Phụ tinh được ghi độ sáng, theo lá số mẫu lyso.vn. Chính tinh và tứ hóa luôn ghi. */
 const GHI_DO_SANG = new Set(['禄存', '天马', '文昌', '文曲', '擎羊', '陀罗', '火星', '铃星', '地空', '地劫', '天刑', '天姚', '天哭', '天虚', '大耗']);
@@ -33,7 +37,7 @@ const goc = (ten: string) => ten.replace(/ \(.\)$/, '');
 
 export function cungHienThi(chart: ZiweiChart, namXem: number): CungHienThi[] {
   const gioiTinh = chart.birthInfo.gender;
-  const tieuHan = tieuHanNam(chart), thang = thangHan(chart), luu = saoLuuNien(chart, namXem);
+  const tieuHan = tieuHanNam(chart), thang = thangHan(chart, namXem), luu = saoLuuNien(chart, namXem);
   const daiHan = cungDaiHan(chart, namXem);
 
   return [...chart.palaces].sort((a, b) => a.branch - b.branch).map(p => {
