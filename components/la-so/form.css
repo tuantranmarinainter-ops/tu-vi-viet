@@ -1,0 +1,36 @@
+/* Trang nhập thông tin — mẫu form đã duyệt 23/11/2026 */
+.ls-form { background: #0B1650; border: 1.5px solid #E0A800; border-radius: 14px; padding: 18px 16px 16px; color: #111;
+  font-family: var(--font-noi-dung), 'Be Vietnam Pro', 'Segoe UI', system-ui, sans-serif; }
+.ls-tieude { text-align: center; color: #FFC81A; margin-bottom: 12px; font-family: var(--font-tieu-de), 'Noto Serif', Georgia, serif; }
+.ls-tieude .phu { font-family: var(--font-noi-dung), 'Be Vietnam Pro', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: .4em; color: #E0B33A; }
+.ls-tieude .chinh { font-size: 21px; font-weight: 700; letter-spacing: .16em; }
+.ls-giay { background: #FFF8E6; border: 1.5px solid #B07D00; outline: 3px double #E0A800; outline-offset: 3px; padding: 18px 20px; }
+.ls-gioithieu { font-size: 13px; color: #333; margin: 0 0 14px; border-bottom: 0.5px solid #E0C98A; padding-bottom: 10px; }
+.ls-dong { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 10px; align-items: start; padding: 7px 0; }
+.ls-nhan { font-weight: 700; font-size: 13px; color: #0030D0; padding-top: 7px; }
+.ls-nhan small { display: block; font-weight: 500; color: #555; font-size: 12px; line-height: 1.5; margin-top: 4px; }
+.ls-nd { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; font-size: 13px; font-weight: 600; }
+.ls-nd > label { display: inline-flex; align-items: center; gap: 5px; }
+.ls-cot { flex-direction: column; align-items: stretch; }
+.ls-giay input[type='text'], .ls-giay input:not([type]), .ls-giay input[type='number'], .ls-giay select, .ls-giay textarea {
+  font: inherit; font-size: 13px; font-weight: 600; color: #111; background: #fff; border: 1px solid #C9AE6A; border-radius: 6px; height: 34px; padding: 0 8px; box-sizing: border-box; }
+.ls-giay textarea { height: 104px; width: 100%; padding: 8px; font-weight: 500; resize: vertical; }
+.ls-giay input:focus-visible, .ls-giay select:focus-visible, .ls-giay textarea:focus-visible { outline: 2px solid #E0A800; outline-offset: 0; }
+.ls-rong { width: min(280px, 100%); }
+.ls-nam { width: 92px; }
+.ls-ngaygio { align-items: flex-end; }
+.ls-o { display: inline-flex !important; flex-direction: column; align-items: flex-start !important; gap: 2px !important; font-size: 12px; color: #333; }
+.ls-canchi { padding-bottom: 8px; }
+.ls-chon-rieng { flex-basis: 100%; }
+.ls-mo { opacity: .4; }
+.ls-ghichu { font-size: 12px; color: #666; font-weight: 500; }
+.ls-canhbao { font-size: 12px; color: #8A4B00; background: #FFF0C8; border: 1px solid #E0C98A; border-radius: 6px; padding: 6px 10px; margin: 6px 0; flex-basis: 100%; }
+.ls-nangcao { margin-top: 8px; border-top: 0.5px solid #E0C98A; padding-top: 8px; }
+.ls-nangcao summary { cursor: pointer; font-weight: 700; font-size: 13px; color: #B07D00; }
+.ls-xemgio { display: block; font-size: 12px; color: #333; margin-top: 10px; }
+.ls-loi { font-size: 12px; color: #E8000B; font-weight: 600; min-height: 16px; margin: 6px 0 0; text-align: right; }
+.ls-nut { display: flex; justify-content: flex-end; gap: 10px; margin-top: 10px; border-top: 0.5px solid #E0C98A; padding-top: 12px; }
+.ls-nut-chinh { font: inherit; font-weight: 700; font-size: 14px; background: #B3001B; color: #FFE9A8; border: 1.5px solid #E0A800; border-radius: 6px; padding: 8px 22px; cursor: pointer; }
+.ls-nut-phu { font: inherit; font-weight: 600; font-size: 13px; background: transparent; color: #0B1650; border: 1px solid #0B1650; border-radius: 6px; padding: 8px 16px; cursor: pointer; }
+.ls-nut-chinh:disabled, .ls-nut-phu:disabled { opacity: .5; cursor: not-allowed; }
+@media (max-width: 560px) { .ls-dong { grid-template-columns: 1fr; gap: 4px; } .ls-nhan { padding-top: 0; } }
