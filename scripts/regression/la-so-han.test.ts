@@ -46,3 +46,12 @@ test('Sao lưu niên năm 2026 (Bính Ngọ)', () => {
   const liem = nam.palaces.find(p => p.stars.some(s => s.name === '廉贞'))!.branch;
   assert.equal(l[liem].find(s => s.ten === 'L.Hóa Kỵ')?.cot, 'phai');
 });
+
+test('Năm xem gõ tay: chỉ nhận năm 1900–2100, giá trị dở dang trả null', async () => {
+  const { namXemHopLe } = await import('../../lib/la-so/han');
+  assert.equal(namXemHopLe('2027'), 2027);
+  assert.equal(namXemHopLe(''), null);
+  assert.equal(namXemHopLe('20'), null);
+  assert.equal(namXemHopLe('2101'), null);
+  assert.equal(namXemHopLe('2026.5'), null);
+});

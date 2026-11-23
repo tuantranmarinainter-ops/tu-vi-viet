@@ -9,6 +9,7 @@ import { formToBirthInfo, formToSearchParams, searchParamsToForm } from '@/lib/z
 import { useHistory } from '@/lib/ziwei/history';
 import { PROFILE_NOTICE, PROFILE_SOURCES } from '@/lib/ziwei/profiles';
 import type { BirthInfo, ZiweiChart, Palace } from '@/lib/ziwei/types';
+import { namXemHopLe } from '@/lib/la-so/han';
 
 const BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
 const NAM_NAY = new Date().getFullYear();
@@ -17,6 +18,7 @@ export default function ChartPage() {
   const [chart, setChart] = useState<ZiweiChart | null>(null);
   const [selectedPalace, setSelectedPalace] = useState<Palace | null>(null);
   const [namXem, setNamXem] = useState(NAM_NAY);
+  const [namXemNhap, setNamXemNhap] = useState(String(NAM_NAY));
   const [tuyChon, setTuyChon] = useState<{ anHoTen?: boolean; anNgaySinh?: boolean; moTa?: string }>({});
   const [initial, setInitial] = useState<Partial<BirthFormState> | undefined>();
   const [formKey, setFormKey] = useState(0);
@@ -28,8 +30,8 @@ export default function ChartPage() {
 
   function napTuyChon(form: Partial<BirthFormState>) {
     setTuyChon({ anHoTen: form.anHoTen, anNgaySinh: form.anNgaySinh, moTa: form.moTa });
-    const nx = Number(form.namXem);
-    setNamXem(Number.isInteger(nx) && nx >= 1900 && nx <= 2100 ? nx : NAM_NAY);
+    const nam = namXemHopLe(String(form.namXem ?? '')) ?? NAM_NAY;
+    setNamXem(nam); setNamXemNhap(String(nam));
   }
 
   useEffect(() => {
@@ -63,7 +65,7 @@ export default function ChartPage() {
   }
   function doiNamXem(nam: number) {
     if (!Number.isInteger(nam) || nam < 1900 || nam > 2100) return;
-    setNamXem(nam);
+    setNamXem(nam); setNamXemNhap(String(nam));
     if (formRef.current) formRef.current = { ...formRef.current, namXem: String(nam) };
   }
   function edit() { setInitial(formRef.current ?? undefined); setFormKey(key => key + 1); setChart(null); setNotice(''); window.scrollTo({ top: 0, behavior: 'auto' }); }
@@ -94,7 +96,7 @@ export default function ChartPage() {
         <button type="button" className="vi-secondary" onClick={edit}>Sửa thông tin sinh</button>
         <span className="tc-namxem" role="group" aria-label="Năm xem">
           <button type="button" className="vi-secondary" aria-label="Năm trước" onClick={() => doiNamXem(namXem - 1)}>−</button>
-          <label>Năm xem <input type="number" value={namXem} min={1900} max={2100} onChange={e => doiNamXem(Number(e.target.value))} /></label>
+          <label>Năm xem <input type="number" inputMode="numeric" value={namXemNhap} min={1900} max={2100} onChange={e => { setNamXemNhap(e.target.value); const n = namXemHopLe(e.target.value); if (n !== null) doiNamXem(n); }} onBlur={() => setNamXemNhap(String(namXem))} /></label>
           <button type="button" className="vi-secondary" aria-label="Năm sau" onClick={() => doiNamXem(namXem + 1)}>+</button>
         </span>
         <button type="button" className="vi-secondary" onClick={share}>Sao chép liên kết</button>

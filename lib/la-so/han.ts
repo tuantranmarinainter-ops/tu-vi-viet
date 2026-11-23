@@ -60,3 +60,10 @@ export function saoLuuNien(chart: ZiweiChart, namXem: number): Record<number, Sa
   them(TIANMA_TABLE[getYearBranchIndex(namXem)], { ten: 'L.Thiên Mã', cot: 'trai' });
   return out;
 }
+
+/** Đọc ô năm xem gõ tay: trả năm hợp lệ (1900–2100) hoặc null khi đang gõ dở / sai. */
+export function namXemHopLe(text: string): number | null {
+  if (!/^\d{4}$/.test(text.trim())) return null;
+  const n = Number(text);
+  return n >= 1900 && n <= 2100 ? n : null;
+}
