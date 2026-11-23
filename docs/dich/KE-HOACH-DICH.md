@@ -21,6 +21,34 @@ Bỏ qua: 37 tệp tài liệu quy trình nội bộ trong `research/nishi-video
 5. Không thêm, không bớt ý; chỗ nào nguồn mơ hồ ghi `[ghi chú người dịch: …]`.
 6. Nhóm 1 (mã TS): tạo bản tiếng Việt trong `lib/la-so/cach-cuc/` — **logic, điều kiện, khóa tiếng Trung giữ y nguyên**, chỉ dịch chuỗi hiển thị (`name`, `description`, `conditions`, `source`); tên sao chèn bằng `${x.name}` đổi thành `${tenSao(x.name)}` (import từ `lib/la-so/ten-viet`). Bỏ `import 'server-only'`. Viết kiểm thử: với 500 lá số ngẫu nhiên (`scripts/regression/helpers/la-so-ngau-nhien.ts`) kết quả nhận diện (số cách cục, mức `level`) của bản Việt bằng bản gốc, và chuỗi hiển thị không còn chữ Hán.
 
+## Môi trường kiểm thử khi không cài được npm (nhóm 1)
+
+Phiên tự động không có mạng tới npm. Dựng phụ thuộc engine từ mã nguồn GitHub (git clone vẫn chạy):
+
+```bash
+mkdir -p work/nm && cd work/nm
+git clone -q --depth 1 -b v2.6.1 https://github.com/SylarLong/iztro
+for r in 6tail/lunar-javascript iamkun/dayjs SylarLong/lunar-lite 6tail/lunar-typescript; do git clone -q --depth 1 https://github.com/$r; done
+git clone -q --depth 1 -b v23.16.8 https://github.com/i18next/i18next
+git clone -q --depth 1 https://github.com/NghiaCaNgao/LunarDate lunar_date_vi
+cd ../..
+python3 - <<'PY'
+import json
+def fix(d, main, typ=None):
+    p = json.load(open(f'work/nm/{d}/package.json')); p['main'] = main
+    for k in ('exports', 'module'): p.pop(k, None)
+    if typ: p['type'] = typ
+    json.dump(p, open(f'work/nm/{d}/package.json', 'w'))
+fix('dayjs', 'src/index.js', 'module'); fix('i18next', 'src/index.js', 'module'); fix('iztro', 'src/index.ts')
+fix('lunar-lite', 'src/index.ts'); fix('lunar-typescript', 'src/lib/index.ts'); fix('lunar_date_vi', 'src/index.ts')
+PY
+mkdir -p node_modules/@nghiavuive
+for d in dayjs i18next iztro lunar-lite lunar-typescript lunar-javascript; do ln -sfn $PWD/work/nm/$d node_modules/$d; done
+ln -sfn $PWD/work/nm/lunar_date_vi node_modules/@nghiavuive/lunar_date_vi
+ln -sfn "$(dirname "$(dirname "$(readlink -f "$(which tsx)")")")" node_modules/tsx   # tsx cài toàn cục
+node node_modules/tsx/dist/cli.mjs scripts/regression/run-all.ts   # phải đạt hết
+```
+
 ## Quy trình mỗi phiên dịch
 
 1. `git checkout dich-noi-dung && git pull`.
