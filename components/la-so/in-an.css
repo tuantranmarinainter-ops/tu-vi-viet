@@ -20,7 +20,9 @@
   /* In đủ 13 chủ đề thay cho phần chọn từng chủ đề trên màn hình */
   .vi-reading > :not(h2):not(.vi-in-du-chu-de) { display: none !important; }
   .vi-in-du-chu-de { display: block; }
-  .vi-in-chu-de { break-inside: avoid-page; margin-bottom: 14px; }
+  .vi-in-chu-de { margin-bottom: 14px; }
+  .vi-in-chu-de h3, .vi-reading > h2 { break-after: avoid-page; }
+  .vi-in-chu-de li, .vi-in-chu-de p { break-inside: avoid; }
   .vi-reading { break-inside: auto !important; }
   .tc-mota { break-before: page; }
 }
