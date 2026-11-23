@@ -9,7 +9,14 @@ export function calcTrueSolarBranch(clockHour: number, clockMinute: number, long
   return branchFromSolarMinutes(minutes);
 }
 
-export function normalizeBirthForm(form: BirthFormState) {
+/** Nhập âm lịch theo chi: dùng giờ giữa của chi, giữ giờ đồng hồ (không hiệu chỉnh giờ mặt trời). */
+export function apDungGioChi(form: BirthFormState): BirthFormState {
+  if (form.inputCalendar !== 'lunar' || form.gioChi === undefined) return form;
+  return { ...form, clockHour: String(form.gioChi * 2), clockMinute: '0', timeConvention: 'clock' };
+}
+
+export function normalizeBirthForm(input: BirthFormState) {
+  const form = apDungGioChi(input);
   if (form.unknownTime) throw new RangeError('Chưa biết giờ sinh: hãy chọn một giờ giả định để so sánh; chưa thể lập lá số xác định.');
   let date = { year: Number(form.year), month: Number(form.month), day: Number(form.day) };
   if (form.inputCalendar === 'lunar') date = calendarToSolar({ ...date, isLeapMonth: !!form.lunarLeap }, form.calendarSystem ?? 'chinese');
@@ -37,7 +44,8 @@ export function normalizeBirthForm(form: BirthFormState) {
 }
 
 /** Shared conversion for chart, compatibility, saved history and URL round trips. */
-export function formToBirthInfo(form: BirthFormState): BirthInfo {
+export function formToBirthInfo(input: BirthFormState): BirthInfo {
+  const form = apDungGioChi(input);
   const normalized = normalizeBirthForm(form);
   return {
     ...normalized.date,
@@ -76,6 +84,11 @@ export function formToSearchParams(form: BirthFormState): URLSearchParams {
   if (form.engineVersion) p.set('engine', form.engineVersion);
   if (form.locationConfirmed) p.set('loc', '1');
   if (form.birthRegion) p.set('region', form.birthRegion);
+  if (form.namXem) p.set('nx', form.namXem);
+  if (form.anHoTen) p.set('ah', '1');
+  if (form.anNgaySinh) p.set('an', '1');
+  if (form.gioChi !== undefined) p.set('gc', String(form.gioChi));
+  // Không bao giờ đưa form.moTa vào liên kết.
   return p;
 }
 
@@ -98,5 +111,9 @@ export function searchParamsToForm(params: URLSearchParams): Partial<BirthFormSt
     engineVersion: params.get('engine') === 'v4' ? 'v4' : 'current',
     locationConfirmed: params.get('loc') === '1',
     birthRegion: params.get('region') === 'north' ? 'north' : params.get('region') === 'south' ? 'south' : 'unknown',
+    namXem: params.get('nx') ?? undefined,
+    anHoTen: params.get('ah') === '1',
+    anNgaySinh: params.get('an') === '1',
+    gioChi: params.get('gc') !== null && /^(?:[0-9]|1[01])$/.test(params.get('gc')!) ? Number(params.get('gc')) : undefined,
   };
 }
