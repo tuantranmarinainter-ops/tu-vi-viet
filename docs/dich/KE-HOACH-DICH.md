@@ -78,9 +78,9 @@ node node_modules/tsx/dist/cli.mjs scripts/regression/run-all.ts   # phải đ�
 | 10 | 2. Lời giảng Nghê Hải Hạ | `lib/nihai/tianji.ts` | 6,678 | CC BY-NC-SA 4.0 | `docs/dich/vi/lib/nihai/tianji.ts` | xong |
 | 11 | 2. Lời giảng Nghê Hải Hạ | `lib/nihai/types.ts` | 247 | CC BY-NC-SA 4.0 | `docs/dich/vi/lib/nihai/types.ts` | xong |
 | 12 | 2. Lời giảng Nghê Hải Hạ | `docs/tianji-ziwei/10上.md` | 12,035 | CC BY-NC-SA 4.0 | `docs/dich/vi/docs/tianji-ziwei/10上.md` | xong |
-| 13 | 2. Lời giảng Nghê Hải Hạ | `docs/tianji-ziwei/11上.md` | 8,170 | CC BY-NC-SA 4.0 | `docs/dich/vi/docs/tianji-ziwei/11上.md` | chưa |
-| 14 | 2. Lời giảng Nghê Hải Hạ | `docs/tianji-ziwei/12上.md` | 7,593 | CC BY-NC-SA 4.0 | `docs/dich/vi/docs/tianji-ziwei/12上.md` | chưa |
-| 15 | 2. Lời giảng Nghê Hải Hạ | `docs/tianji-ziwei/13上.md` | 8,384 | CC BY-NC-SA 4.0 | `docs/dich/vi/docs/tianji-ziwei/13上.md` | chưa |
+| 13 | 2. Lời giảng Nghê Hải Hạ | `docs/tianji-ziwei/11上.md` | 8,170 | CC BY-NC-SA 4.0 | `docs/dich/vi/docs/tianji-ziwei/11上.md` | đang: nhận 2026-11-23 09:31 UTC |
+| 14 | 2. Lời giảng Nghê Hải Hạ | `docs/tianji-ziwei/12上.md` | 7,593 | CC BY-NC-SA 4.0 | `docs/dich/vi/docs/tianji-ziwei/12上.md` | đang: nhận 2026-11-23 09:31 UTC |
+| 15 | 2. Lời giảng Nghê Hải Hạ | `docs/tianji-ziwei/13上.md` | 8,384 | CC BY-NC-SA 4.0 | `docs/dich/vi/docs/tianji-ziwei/13上.md` | đang: nhận 2026-11-23 09:31 UTC |
 | 16 | 2. Lời giảng Nghê Hải Hạ | `docs/tianji-ziwei/14上.md` | 7,064 | CC BY-NC-SA 4.0 | `docs/dich/vi/docs/tianji-ziwei/14上.md` | chưa |
 | 17 | 2. Lời giảng Nghê Hải Hạ | `docs/tianji-ziwei/15上.md` | 8,496 | CC BY-NC-SA 4.0 | `docs/dich/vi/docs/tianji-ziwei/15上.md` | chưa |
 | 18 | 2. Lời giảng Nghê Hải Hạ | `docs/tianji-ziwei/19上_补充1.md` | 6,464 | CC BY-NC-SA 4.0 | `docs/dich/vi/docs/tianji-ziwei/19上_补充1.md` | chưa |
