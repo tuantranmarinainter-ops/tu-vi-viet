@@ -67,6 +67,10 @@ Ngày 04/11/2026: `codex features list` đọc cấu hình mà không báo lỗi
 - Usage: chưa đo.
 - Phần còn thiếu / quyết định tiếp theo: anh Tuấn chạy `npm.cmd run typecheck`, `npm.cmd test`, `npm.cmd run build`, `npm.cmd run build:static`, xem /chart và PDF; đợt 2 bổ sung bộ sao và bảng miếu/hãm Việt.
 
+## DICH-NOI-DUNG — Dịch nội dung tiếng Trung (trừ v4), nhánh dich-noi-dung
+
+- 23/11/2026 07:50 UTC — phiên tự động 1 (Claude Opus 5.5, không subagent). Tệp: bảng việc dòng 1–8 — `lib/ziwei/patterns.ts`, `patterns-dingfu.ts`, `patterns-dinggui.ts`, `patterns-dingpin.ts`, `patterns-dingza.ts`, `heming-knowledge.ts` → `lib/la-so/cach-cuc/` (thay chuỗi theo vị trí literal bằng script AST, logic/khóa giữ nguyên, tên sao chèn qua `tenSao`, tên cung qua `tenCung`; chú thích mã giữ bản gốc); `lib/nihai/diji.ts`, `lib/nihai/index.ts` → `docs/dich/vi/lib/nihai/`. Chữ Hán theo bảng: 19.646 (số này gồm cả chú thích mã nhóm 1, phần chú thích không dịch theo quy tắc 6). Kiểm tra: `scripts/regression/la-so-cach-cuc.test.ts` mới — 500 lá số ngẫu nhiên, 2.488 cách cục khớp bản gốc (level, palaces, số điều kiện; Định quý/phú/bần tiện cục, Định tạp cục, tóm tắt cung Mệnh), chuỗi hiển thị không còn chữ Hán; run-all 30/30 đạt (môi trường dựng từ mã GitHub theo kế hoạch). `tsc` không báo lỗi trong `lib/la-so/cach-cuc/` (lỗi còn lại chỉ do thiếu @types/node ở máy này). Giới hạn: `palaces` và `palaceName` vẫn là khóa tiếng Trung (dịch khi hiển thị); `docs/dich/vi/lib/nihai/index.ts` chưa chạy được tới khi dịch xong types/tianji/renji. Nguồn có vài ký tự hỏng (`强���稳重`, `先��没有`), đã dịch theo nghĩa hiển nhiên.
+
 ## Mẫu cho lần tiếp theo
 
 ```text

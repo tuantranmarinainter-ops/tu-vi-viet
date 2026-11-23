@@ -66,14 +66,14 @@ node node_modules/tsx/dist/cli.mjs scripts/regression/run-all.ts   # phải đ�
 
 | # | Nhóm | Tệp nguồn | Chữ Hán | Giấy phép | Đầu ra | Trạng thái |
 |---|---|---|---|---|---|---|
-| 1 | 1. Cách cục / hợp hôn | `lib/ziwei/patterns.ts` | 5,905 | MIT | `lib/la-so/cach-cuc/ (bản TS tiếng Việt, logic giữ nguyên)` | chưa |
-| 2 | 1. Cách cục / hợp hôn | `lib/ziwei/patterns-dingfu.ts` | 1,040 | MIT | `lib/la-so/cach-cuc/ (bản TS tiếng Việt, logic giữ nguyên)` | chưa |
-| 3 | 1. Cách cục / hợp hôn | `lib/ziwei/patterns-dinggui.ts` | 2,552 | MIT | `lib/la-so/cach-cuc/ (bản TS tiếng Việt, logic giữ nguyên)` | chưa |
-| 4 | 1. Cách cục / hợp hôn | `lib/ziwei/patterns-dingpin.ts` | 1,327 | MIT | `lib/la-so/cach-cuc/ (bản TS tiếng Việt, logic giữ nguyên)` | chưa |
-| 5 | 1. Cách cục / hợp hôn | `lib/ziwei/patterns-dingza.ts` | 2,020 | MIT | `lib/la-so/cach-cuc/ (bản TS tiếng Việt, logic giữ nguyên)` | chưa |
-| 6 | 1. Cách cục / hợp hôn | `lib/ziwei/heming-knowledge.ts` | 4,334 | MIT | `lib/la-so/cach-cuc/ (bản TS tiếng Việt, logic giữ nguyên)` | chưa |
-| 7 | 2. Lời giảng Nghê Hải Hạ | `lib/nihai/diji.ts` | 1,377 | CC BY-NC-SA 4.0 | `docs/dich/vi/lib/nihai/diji.ts` | chưa |
-| 8 | 2. Lời giảng Nghê Hải Hạ | `lib/nihai/index.ts` | 1,091 | CC BY-NC-SA 4.0 | `docs/dich/vi/lib/nihai/index.ts` | chưa |
+| 1 | 1. Cách cục / hợp hôn | `lib/ziwei/patterns.ts` | 5,905 | MIT | `lib/la-so/cach-cuc/ (bản TS tiếng Việt, logic giữ nguyên)` | xong |
+| 2 | 1. Cách cục / hợp hôn | `lib/ziwei/patterns-dingfu.ts` | 1,040 | MIT | `lib/la-so/cach-cuc/ (bản TS tiếng Việt, logic giữ nguyên)` | xong |
+| 3 | 1. Cách cục / hợp hôn | `lib/ziwei/patterns-dinggui.ts` | 2,552 | MIT | `lib/la-so/cach-cuc/ (bản TS tiếng Việt, logic giữ nguyên)` | xong |
+| 4 | 1. Cách cục / hợp hôn | `lib/ziwei/patterns-dingpin.ts` | 1,327 | MIT | `lib/la-so/cach-cuc/ (bản TS tiếng Việt, logic giữ nguyên)` | xong |
+| 5 | 1. Cách cục / hợp hôn | `lib/ziwei/patterns-dingza.ts` | 2,020 | MIT | `lib/la-so/cach-cuc/ (bản TS tiếng Việt, logic giữ nguyên)` | xong |
+| 6 | 1. Cách cục / hợp hôn | `lib/ziwei/heming-knowledge.ts` | 4,334 | MIT | `lib/la-so/cach-cuc/ (bản TS tiếng Việt, logic giữ nguyên)` | xong |
+| 7 | 2. Lời giảng Nghê Hải Hạ | `lib/nihai/diji.ts` | 1,377 | CC BY-NC-SA 4.0 | `docs/dich/vi/lib/nihai/diji.ts` | xong |
+| 8 | 2. Lời giảng Nghê Hải Hạ | `lib/nihai/index.ts` | 1,091 | CC BY-NC-SA 4.0 | `docs/dich/vi/lib/nihai/index.ts` | xong |
 | 9 | 2. Lời giảng Nghê Hải Hạ | `lib/nihai/renji.ts` | 7,549 | CC BY-NC-SA 4.0 | `docs/dich/vi/lib/nihai/renji.ts` | chưa |
 | 10 | 2. Lời giảng Nghê Hải Hạ | `lib/nihai/tianji.ts` | 6,678 | CC BY-NC-SA 4.0 | `docs/dich/vi/lib/nihai/tianji.ts` | chưa |
 | 11 | 2. Lời giảng Nghê Hải Hạ | `lib/nihai/types.ts` | 247 | CC BY-NC-SA 4.0 | `docs/dich/vi/lib/nihai/types.ts` | chưa |
