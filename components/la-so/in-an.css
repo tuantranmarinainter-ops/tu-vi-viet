@@ -1,0 +1,26 @@
+/* Trang /chart và bản in A4 */
+.tc-trang { font-family: var(--font-noi-dung), 'Be Vietnam Pro', 'Segoe UI', system-ui, sans-serif; }
+.tc-nhap { max-width: 760px; margin: 0 auto; }
+.tc-namxem { display: inline-flex; align-items: center; gap: 6px; }
+.tc-namxem input { width: 84px; font: inherit; }
+.tc-laso-in { margin: 16px 0; }
+.tc-laso-in .vi-board-scroll { overflow-x: auto; }
+.tc-mota { margin-top: 24px; }
+.tc-mota p { white-space: pre-wrap; }
+.vi-in-du-chu-de { display: none; }
+
+@media print {
+  @page { size: A4 portrait; margin: 10mm; }
+  html, body { background: #fff !important; }
+  .tc-dau, .tc-congcu, .tc-chan, .tc-hoso, .vi-scroll-hint, .vi-notice, button { display: none !important; }
+  .tc-trang { padding: 0 !important; max-width: none !important; }
+  .tc-laso-in { margin: 0; break-after: page; break-inside: avoid; }
+  .tc-laso-in .vi-board-scroll { overflow: visible; }
+  .laso-khung, .laso-khung *, .laso-giay, .laso-cung { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  /* In đủ 13 chủ đề thay cho phần chọn từng chủ đề trên màn hình */
+  .vi-reading > :not(h2):not(.vi-in-du-chu-de) { display: none !important; }
+  .vi-in-du-chu-de { display: block; }
+  .vi-in-chu-de { break-inside: avoid-page; margin-bottom: 14px; }
+  .vi-reading { break-inside: auto !important; }
+  .tc-mota { break-before: page; }
+}

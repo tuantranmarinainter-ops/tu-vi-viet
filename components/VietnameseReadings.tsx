@@ -65,7 +65,7 @@ export default function VietnameseReadings({ chart, selectedPalace, view = 'ming
       <ul className="vi-evidence">{reading.evidence.map(line => <li key={line}>{line}</li>)}</ul>
       {reading.paragraphs.map(paragraph => <p key={paragraph}>{paragraph}</p>)}
     </>}
-    <details className="vi-details"><summary>Đối chiếu luận giải v4 gốc</summary>
+    {process.env.NEXT_PUBLIC_STATIC !== '1' && <details className="vi-details"><summary>Đối chiếu luận giải v4 gốc</summary>
       <p>Dữ liệu của tác giả bằng tiếng Trung. Chỉ hiển thị khi cấu trúc lá số khớp engine tại tag v4.0-13d; không tự dịch bằng AI hoặc trừ usage của bạn.</p>
       <button type="button" className="vi-secondary" disabled={loading} onClick={loadV4}>{loading ? 'Đang đối chiếu và đọc tệp nén…' : 'Đọc bản v4 tương ứng'}</button>
       {v4?.message && <p role="status">{v4.message}</p>}
@@ -75,7 +75,11 @@ export default function VietnameseReadings({ chart, selectedPalace, view = 'ming
         {translationNotice && <p role="status">{translationNotice}</p>}
         {translation && <><h3>Bản dịch đã nạp</h3><pre className="vi-original" lang="vi">{translation}</pre><p className="vi-muted">Bản dịch trên trình duyệt; chưa được thẩm định nội dung.</p><button type="button" className="vi-secondary" onClick={() => { if (v4.sourceHash) { try { localStorage.removeItem(translationCacheKey(v4.sourceHash)); } catch { /* Still clear the current view. */ } } setTranslation(''); setTranslationNotice('Đã xóa bản dịch đã nạp trên trình duyệt này.'); }}>Xóa bản dịch đã nạp</button></>}
         <details><summary>Nguyên văn tiếng Trung</summary><pre className="vi-original" lang="zh-CN">{v4.text}</pre></details><p className="vi-muted">{v4.attribution}</p></>}
-    </details>
+    </details>}
+    <div className="vi-in-du-chu-de">{READING_TOPICS.map(item => { const r = getVietnameseReading(chart, item.key); return <article key={item.key} className="vi-in-chu-de">
+      <h3>{r.title}</h3>
+      {r.detailed ? <DetailedReading reading={r.detailed} /> : <><ul className="vi-evidence">{r.evidence.map(line => <li key={line}>{line}</li>)}</ul>{r.paragraphs.map(paragraph => <p key={paragraph}>{paragraph}</p>)}</>}
+    </article>; })}</div>
     <p className="vi-muted vi-source">Nguồn quy tắc nền: engine Zi Wei Dou Shu và iztro; phần tiếng Việt là diễn giải giới hạn của ứng dụng, không phải bản dịch toàn bộ v4.</p>
   </section>;
 }
